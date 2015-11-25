@@ -33,13 +33,13 @@ namespace Game1
         {
             spriteBatch = new SpriteBatch(this.GraphicsDevice);
             smokeTexture = this.Content.Load<Texture2D>("smokePic");
-            particleSystem = new ParticleSystem(new Vector2(400, 300));
-            particleSystem.addParticle(new Vector2(0.01f, 0.015f),
-                                        new Vector2(0, -1), new Vector2(0.1f * MathHelper.Pi, 0.1f * -MathHelper.Pi),
+            particleSystem = new ParticleSystem(new Vector2(400, 475));
+            particleSystem.addParticle(new Vector2(0.02f, 0.015f), // density
+                                        new Vector2(1, -1), new Vector2(0.1f * MathHelper.Pi, 0.25f * -MathHelper.Pi), // rotate
                                         new Vector2(0.5f, 0.75f),
-                                        new Vector2(60, 70), new Vector2(15, 15f),
+                                        new Vector2(20, 120), new Vector2(225, 575f), // spread
                                         Color.Orange, Color.Black, new Color(Color.Black, 0), new Color(Color.Black, 0),
-                                        new Vector2(400, 500), new Vector2(100, 120), 1000, Vector2.Zero, smokeTexture);
+                                        new Vector2(800, 600), new Vector2(100, 160), 10000, Vector2.Zero, smokeTexture); // particles
 
             base.Initialize();
         }
@@ -77,7 +77,7 @@ namespace Game1
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1000f);
+            particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1800f); // speed of smoke
 
             base.Update(gameTime);
         }
