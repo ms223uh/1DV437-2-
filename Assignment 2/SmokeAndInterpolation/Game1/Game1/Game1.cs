@@ -33,7 +33,7 @@ namespace Game1
         {
             spriteBatch = new SpriteBatch(this.GraphicsDevice);
             smokeTexture = this.Content.Load<Texture2D>("smokePic");
-            particleSystem = new ParticleSystem(new Vector2(400, 475));
+            particleSystem = new ParticleSystem(new Vector2(400, 475)); // // Cordination of smokeSpawn - Position
             particleSystem.addParticle(new Vector2(0.02f, 0.015f), // density
                                         new Vector2(1, -1), new Vector2(0.1f * MathHelper.Pi, 0.25f * -MathHelper.Pi), // rotate
                                         new Vector2(0.5f, 0.75f),

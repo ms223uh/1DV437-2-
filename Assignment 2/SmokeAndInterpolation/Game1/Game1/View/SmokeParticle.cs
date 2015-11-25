@@ -61,8 +61,8 @@ namespace Game1.View
             float currScale = SmokeCalculate.smokeyCalc(smokeScaleEnd, smokeScaleBegin, smokelifePhase);
             Color currCol = SmokeCalculate.smokeyCalc(smokeEndColor, smokeStartColor, smokelifePhase);
             spriteBatch.Draw(smokeSystem.smokeParticleSprite,
-                     new Rectangle((int)((smokePosition.X - 0.5f * currScale) * Scale + Offset.X),
-                              (int)((smokePosition.Y - 0.5f * currScale) * Scale + Offset.Y),
+                     new Rectangle((int)((smokePosition.X - 0.5f * currScale) * Scale + Offset.X), // Cordination of smokeSpawn
+                              (int)((smokePosition.Y - 0.5f * currScale) * Scale + Offset.Y), // Cordination of smokeSpawn
                               (int)(currScale * Scale),
                               (int)(currScale * Scale)),
                      null, currCol, 0, Vector2.Zero, SpriteEffects.None, 0);
