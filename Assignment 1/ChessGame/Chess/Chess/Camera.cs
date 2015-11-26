@@ -8,7 +8,7 @@ namespace Chess
 {
     class Camera
     {
-
+        // size of tile and border
         int sizeOfTile = 64;
         int borderSize = 64;
         int visualX;
@@ -20,6 +20,7 @@ namespace Chess
             graphics = Graphics;
         }
 
+        // get visual screenCordinations
         public Rectangle getCordinations(int x, int y)
         {
             visualX = borderSize + x * sizeOfTile;
@@ -28,6 +29,7 @@ namespace Chess
             return new Rectangle(visualX, visualY, sizeOfTile, sizeOfTile);
         }
 
+        // rotate the board, so the loop begin to printing the tiles from a different direction
         public Rectangle rotateBoard(int xCord, int yCord)
         {
            visualX = (sizeOfTile * 8 + borderSize - sizeOfTile) - (xCord * sizeOfTile);
@@ -36,6 +38,7 @@ namespace Chess
             return new Rectangle(visualX, visualY, sizeOfTile, sizeOfTile);
         }
 
+        // resize the tiles with 10
         public Rectangle whiteScale(int x, int y)
         {
             sizeOfTile = graphics.GraphicsDevice.Viewport.Width / 10;
@@ -48,6 +51,7 @@ namespace Chess
 
         }
 
+        // resize the tiles with 10
         public Rectangle blackScale(int xCord, int yCord)
         {
             sizeOfTile = graphics.GraphicsDevice.Viewport.Width / 10;

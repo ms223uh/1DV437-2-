@@ -12,8 +12,8 @@ namespace Ball.Model
     {
         Vector2 ballPosition;
         Vector2 ballSpeed;
-        float ballRadius = 0.05f;
-        Vector2 velocity2 = new Vector2(0.7f, 0.3f);
+        float ballRadius = 0.05f; // size and collisionArea for the ball
+        Vector2 velocity2 = new Vector2(0.7f, 0.3f); // speed and direction for the ball
 
         public Ball()
         {
@@ -22,13 +22,14 @@ namespace Ball.Model
             ballSpeed = velocity2;
         }
 
+        // update the direction/postion and speed
         public void updateBallPosition(float time)
         {
             ballPosition.X += ballSpeed.X * time;
             ballPosition.Y += ballSpeed.Y * time;
         }
 
-
+        // update speed and direction
         public void updateVelocity(float velocityValue)
         {
             velocity2.X += velocityValue;
@@ -39,6 +40,7 @@ namespace Ball.Model
             return ballPosition;
         }
 
+        // function get/set ballspeed
         public void setBallSpeedX()
         {
             if (ballSpeed.X < 0)
@@ -51,6 +53,7 @@ namespace Ball.Model
             }
         }
 
+        // function get/set ballspeed
         public void setBallSpeedY()
         {
             if (ballSpeed.Y < 0)

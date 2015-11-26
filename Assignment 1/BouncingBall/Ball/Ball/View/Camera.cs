@@ -38,11 +38,13 @@ namespace Ball.View
             return new Rectangle((int)borderSize, (int)borderSize, (int)cordX, (int)cordY);
         }
 
+        //scale the ball, here can we set the size for the ball
         public float ballScale(float radius, int ballWidth)
         {
             return (radius * 2.0f) * (float)cordX / (int)ballWidth;
         }
 
+        // get visual cordination for the gameArea
         public Vector2 screenCord(Vector2 logicalPosition)
         {
             int screenCordX = (int)(logicalPosition.X * cordX) + (int)borderSize;

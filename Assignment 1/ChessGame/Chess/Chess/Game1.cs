@@ -9,6 +9,8 @@ namespace Chess
     /// </summary>
     public class ChessGame: Game
     {
+        //Fields and get other class
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D whiteRec;
@@ -21,8 +23,8 @@ namespace Chess
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferHeight = 320;
-            graphics.PreferredBackBufferWidth = 240;
+            graphics.PreferredBackBufferHeight = 320; // ScreenSize
+            graphics.PreferredBackBufferWidth = 240; // ScreenSize
             graphics.ApplyChanges();
             camera = new Camera(graphics);
 
@@ -50,6 +52,9 @@ namespace Chess
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
+            // Set the color for the tiles and playerIcon
 
             whiteRec = new Texture2D(GraphicsDevice, 1, 1);
             whiteRec.SetData(new[] { Color.White });
@@ -97,6 +102,7 @@ namespace Chess
 
             spriteBatch.Begin();
 
+            // Loop the tiles for the visual board
             int a = 0;
             for (int y = 0; y < 8; y++)
             {
@@ -114,8 +120,13 @@ namespace Chess
                 }
                 a++;
             }
+
+            //
+            // Draw the board
+            //
+
             //spriteBatch.Draw(playerIcon, camera.getCordinations(1, 1), Color.White);
-            spriteBatch.Draw(playerIcon, camera.blackScale(2, 2), Color.White);
+            spriteBatch.Draw(playerIcon, camera.blackScale(2, 2), Color.White); // "(2,2)" is the position for the playerIcon
 
 
 

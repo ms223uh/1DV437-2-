@@ -16,6 +16,7 @@ namespace Ball.View
         Texture2D ballTexture;
         Texture2D gameBox;
 
+        // construct
         public BallView(BallSimulation ballSim, Camera viewCamera, GraphicsDevice graphics, Texture2D psyBall)
         {
             ballSimulation = ballSim;
@@ -27,6 +28,7 @@ namespace Ball.View
 
         }
 
+        // draw the gameArea and set color
         public void Draw(SpriteBatch sprite)
         {
             float psyBallScale = camera.ballScale(ballSimulation.simBallRadius(), ballTexture.Bounds.Width);

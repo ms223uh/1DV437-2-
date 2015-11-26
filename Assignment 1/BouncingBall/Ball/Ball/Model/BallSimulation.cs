@@ -27,7 +27,7 @@ namespace Ball.Model
             return ball.getBallRadius();
         }
 
-
+        // set collision in wall, ball colloide in postion 1 & 0, between its free example: 0,5 the ball not collide
         public void simUpdate(float gameTime)
         {
             ball.updateBallPosition(gameTime);
