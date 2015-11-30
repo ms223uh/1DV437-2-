@@ -35,7 +35,7 @@ namespace Game1.View
 
             public Rectangle getRectangle(float x, float y)
             {
-                return new Rectangle((int)(scaleX * x), (int)(scaleY * y), 150, 150);
+                return new Rectangle((int)(scaleX * x), (int)(scaleY * y), 50, 50);
             }
         }
     }
