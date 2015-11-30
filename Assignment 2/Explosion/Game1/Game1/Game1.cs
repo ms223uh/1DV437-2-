@@ -1,34 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Game1.View;
 
-namespace Chess
+namespace Game1
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class ChessGame: Game
+    public class Game1 : Game
     {
-        //Fields and get other class
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D whiteRec;
-        Texture2D blackRec;
-        Texture2D playerIcon;
-        Camera camera;
 
-        public ChessGame()
+        public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.IsFullScreen = false;
-            graphics.PreferredBackBufferHeight = 320; // ScreenSize
-            graphics.PreferredBackBufferWidth = 240; // ScreenSize
-            graphics.ApplyChanges();
-            camera = new Camera(graphics);
-
-
         }
 
         /// <summary>
@@ -53,19 +41,7 @@ namespace Chess
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            // Set the color for the tiles and playerIcon
-
-            whiteRec = new Texture2D(GraphicsDevice, 1, 1);
-            whiteRec.SetData(new[] { Color.White });
-
-            blackRec = new Texture2D(GraphicsDevice, 1, 1);
-            blackRec.SetData(new[] { Color.Black });
-
-            playerIcon = new Texture2D(GraphicsDevice, 1, 1);
-            playerIcon.SetData(new[] { Color.Red });
-
-
+            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -84,7 +60,7 @@ namespace Chess
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
@@ -100,37 +76,7 @@ namespace Chess
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
-
-            // Loop the tiles for the visual board
-            int a = 0;
-            for (int y = 0; y < 8; y++)
-            {
-                for (int x = 0; x < 8; x++)
-                {
-                    if (a % 2 == 0)
-                    {
-                        spriteBatch.Draw(whiteRec, camera.blackScale(x, y), Color.White );
-                    }
-                    else
-                    {
-                        spriteBatch.Draw(blackRec, camera.blackScale(x, y), Color.White);
-                    }
-                    a++;
-                }
-                a++;
-            }
-
-            //
-            // Draw the board
-            //
-
-           spriteBatch.Draw(playerIcon, camera.getCordinations(1, 1), Color.White);
-           // spriteBatch.Draw(playerIcon, camera.blackScale(2, 2), Color.White); // "(2,2)" is the position for the playerIcon
-
-
-
-            spriteBatch.End();
+            // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
