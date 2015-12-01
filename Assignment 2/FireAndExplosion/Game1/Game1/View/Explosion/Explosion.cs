@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Game1.View;
-using Game1.View.Game1.View;
+
 
 namespace Game1.View
 {

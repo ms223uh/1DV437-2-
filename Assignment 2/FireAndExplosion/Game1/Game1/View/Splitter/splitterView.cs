@@ -5,10 +5,9 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-
-namespace Game1.View
+namespace Game1.View.Splitter
 {
-    class GameView
+    class SplitterView
     {
 
         SpriteBatch spriteBatch;
@@ -16,10 +15,10 @@ namespace Game1.View
         Camera camera;
         Texture2D particleTexture;
         float durationTime;
-        
-        
 
-        public GameView(SpriteBatch Sprite, Camera camera2, Texture2D particleTexture2)
+
+
+        public SplitterView(SpriteBatch Sprite, Camera camera2, Texture2D particleTexture2)
         {
             spriteBatch = Sprite;
             particleTexture = particleTexture2;
@@ -39,7 +38,7 @@ namespace Game1.View
         public void Draw(float elapsedTime)
         {
             durationTime += elapsedTime;
-            if(durationTime > 2)
+            if (durationTime > 2)
             {
                 createParticle();
                 durationTime = 0;
@@ -53,7 +52,6 @@ namespace Game1.View
 
             spriteBatch.End();
         }
-
 
     }
 }

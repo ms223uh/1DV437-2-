@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Game1.View;
+using Game1.View.Splitter;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -11,6 +13,11 @@ namespace Game1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        ParticleSystem particleSystem;
+        Texture2D smokeTexture;
+        Camera camera;
+        GameView gameView;
+        SplitterView splitterView;
 
         public Game1()
         {
@@ -26,7 +33,15 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            smokeTexture = this.Content.Load<Texture2D>("smokePic");
+            particleSystem = new ParticleSystem(new Vector2(400, 475)); // // Cordination of smokeSpawn - Position
+            particleSystem.addParticle(new Vector2(0.02f, 0.015f), // density
+                                        new Vector2(1, -1), new Vector2(0.1f * MathHelper.Pi, 0.25f * -MathHelper.Pi), // rotate
+                                        new Vector2(0.5f, 0.75f),
+                                        new Vector2(20, 120), new Vector2(225, 575f), // spread
+                                        Color.Orange, Color.Black, new Color(Color.Black, 0), new Color(Color.Black, 0),
+                                        new Vector2(800, 600), new Vector2(100, 160), 10000, Vector2.Zero, smokeTexture);
 
             base.Initialize();
         }
@@ -37,6 +52,10 @@ namespace Game1
         /// </summary>
         protected override void LoadContent()
         {
+
+            camera = new Camera(GraphicsDevice.Viewport);
+            gameView = new GameView(spriteBatch, camera, Content.Load<Texture2D>("explosion"));
+            splitterView = new SplitterView(spriteBatch, camera, Content.Load<Texture2D>("spark"));
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -62,7 +81,7 @@ namespace Game1
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1800f);
 
             base.Update(gameTime);
         }
@@ -75,7 +94,13 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            
+
+            spriteBatch.Begin();
+            gameView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            splitterView.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+            particleSystem.Draw(spriteBatch, 1, Vector2.Zero);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
