@@ -31,7 +31,7 @@ namespace Game1.View
         {
             this.explosionTexture = explosionTexture;
             explosionTime = 1000.0f;
-            scale = 1.0f;
+            scale = 1.25f;
 
             expWidth = explosionTexture.Width / xFrames;
             expHeight = explosionTexture.Height / yFrames;
@@ -39,9 +39,9 @@ namespace Game1.View
         }
 
 
-        public void Draw(SpriteBatch spriteBatch, Camera cam, float elaspedTime)
+        public void Draw(SpriteBatch spriteBatch, Camera cam, float elapsedTime)
         {
-            goneTime += explosionTime;
+            goneTime += elapsedTime;
             if(goneTime >= explosionTime)
             {
                 goneTime = 0;
