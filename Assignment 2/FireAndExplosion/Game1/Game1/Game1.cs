@@ -35,7 +35,7 @@ namespace Game1
         {
             spriteBatch = new SpriteBatch(this.GraphicsDevice);
             smokeTexture = this.Content.Load<Texture2D>("smokePic");
-            particleSystem = new ParticleSystem(new Vector2(400, 475)); // // Cordination of smokeSpawn - Position
+            particleSystem = new ParticleSystem(new Vector2(250, 210)); // // Cordination of smokeSpawn - Position
             particleSystem.addParticle(new Vector2(0.02f, 0.015f), // density
                                         new Vector2(1, -1), new Vector2(0.1f * MathHelper.Pi, 0.25f * -MathHelper.Pi), // rotate
                                         new Vector2(0.5f, 0.75f),
@@ -92,17 +92,18 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            
-
             spriteBatch.Begin();
+
             gameView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
             splitterView.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
             particleSystem.Draw(spriteBatch, 1, Vector2.Zero);
             spriteBatch.End();
 
             base.Draw(gameTime);
+
         }
     }
 }

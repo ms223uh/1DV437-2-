@@ -30,7 +30,7 @@ namespace Game1.View
         public Explosion(Texture2D explosionTexture)
         {
             this.explosionTexture = explosionTexture;
-            explosionTime = 1000.0f;
+            explosionTime = 1500.0f;
             scale = 1.25f;
 
             expWidth = explosionTexture.Width / xFrames;
@@ -49,11 +49,11 @@ namespace Game1.View
 
             float animatedTime = goneTime / explosionTime;
 
-            frame = (int)(animatedTime * numberOfFrames);
-            frameX = frame % xFrames;
-            frameY = frame / yFrames;
+            frame = (int)(numberOfFrames * animatedTime);
+            frameX = frame / xFrames;
+            frameY = frame % yFrames;
 
-            spriteBatch.Draw(explosionTexture, cam.getScreenCord(new Vector2(1.0f, 1.0f)),
+            spriteBatch.Draw(explosionTexture, cam.getScreenCord(new Vector2(0.5f, 0.5f)),
                 new Rectangle((int)(expWidth * frameX), (int)(expHeight * frameY), (int)expWidth, (int)expHeight),
                 Color.White, 0, new Vector2(expWidth / 2, expHeight / 2), scale, SpriteEffects.None, 0);
 
