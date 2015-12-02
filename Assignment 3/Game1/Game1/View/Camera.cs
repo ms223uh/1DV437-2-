@@ -33,6 +33,14 @@ namespace Game1.View
                 return new Vector2(screenX, screenY);
             }
 
+
+            public Vector2 getLogicalCord(float x, float y)
+            {
+                int screenX = (int)((x / scaleX));
+                int screenY = (int)((y / scaleY));
+                return new Vector2(screenX, screenY);
+            }
+
             public Rectangle getRectangle(float x, float y)
             {
                 return new Rectangle((int)(scaleX * x), (int)(scaleY * y), 150, 150);

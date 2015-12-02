@@ -12,6 +12,7 @@ namespace Game1.View
 {
     class Explosion
     {
+        Camera camera;
         private Texture2D explosionTexture;
         private int xframes = 4;
         private int yframes = 8;
@@ -35,6 +36,8 @@ namespace Game1.View
             expHeight = explosionTexture.Height / yframes;
             expWidth = explosionTexture.Width / xframes;
         }
+
+      
 
         public void Draw(SpriteBatch spriteBatch, Camera cam, float elapsedTime)
         {

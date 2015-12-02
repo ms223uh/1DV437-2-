@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Game1.View;
 using Game1.View.Game1.View;
+using Game1.Controller;
 
 namespace Game1
 {
@@ -15,13 +16,17 @@ namespace Game1
         SpriteBatch spriteBatch;
         Camera camera;
         ExplosionView explosionView;
-        
+        Explosion explosion;
+        GameController gameController;
+
+        private MouseState oldState;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = false;
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -71,7 +76,17 @@ namespace Game1
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
+            MouseState newState = Mouse.GetState();
+
+            if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
+            {
+                
+                Vector2 vec = new Vector2(newState.X, newState.Y);
+                gameController.explosionClicked(vec);
+            }
+
+            oldState = newState;
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -84,9 +99,9 @@ namespace Game1
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
             explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
-
+            
             base.Draw(gameTime);
         }
     }
