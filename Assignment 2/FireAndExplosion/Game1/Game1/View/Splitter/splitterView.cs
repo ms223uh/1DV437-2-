@@ -37,12 +37,12 @@ namespace Game1.View.Splitter
 
         public void Draw(float elapsedTime)
         {
-            durationTime += elapsedTime;
-            if (durationTime > 2)
-            {
-                createParticle();
-                durationTime = 0;
-            }
+            //durationTime += elapsedTime;
+            //if (durationTime > 2)
+            //{
+            //    createParticle();
+            //    durationTime = 0;
+            //}
 
             particle.Update(elapsedTime);
 

@@ -30,7 +30,7 @@ namespace Game1.View
         public Explosion(Texture2D explosionTexture)
         {
             this.explosionTexture = explosionTexture;
-            explosionTime = 1500.0f;
+            explosionTime = 1750.0f;
             scale = 1.25f;
 
             expWidth = explosionTexture.Width / xFrames;

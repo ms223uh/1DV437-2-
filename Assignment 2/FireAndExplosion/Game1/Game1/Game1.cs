@@ -18,6 +18,7 @@ namespace Game1
         Camera camera;
         GameView gameView;
         SplitterView splitterView;
+        private int frameCount = 0;
 
         public Game1()
         {
@@ -81,7 +82,7 @@ namespace Game1
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 1800f);
+            particleSystem.Update(gameTime.ElapsedGameTime.Milliseconds / 5000f);
 
             base.Update(gameTime);
         }
@@ -92,15 +93,27 @@ namespace Game1
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            frameCount++;
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin();
+            
+            if(frameCount <= 24)
+            {
+                gameView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            }
 
-            gameView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
-            splitterView.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+        
+                splitterView.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+            
+            
+            
             particleSystem.Draw(spriteBatch, 1, Vector2.Zero);
+
             spriteBatch.End();
+
+          
 
             base.Draw(gameTime);
 
