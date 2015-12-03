@@ -42,7 +42,7 @@ namespace Game1.View
             expWidth = explosionTexture.Width / xframes;
         }
 
-      
+
 
         public void Draw(SpriteBatch spriteBatch, Camera cam, float elapsedTime)
         {

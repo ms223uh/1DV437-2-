@@ -41,7 +41,7 @@ namespace Game1
         protected override void Initialize()
         {
 
-            
+
 
 
             base.Initialize();
@@ -58,12 +58,12 @@ namespace Game1
             // Create a new SpriteBatch, which can be used to draw textures.
             camera.setfieldsize(graphics.GraphicsDevice.Viewport);
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-           gameController = new GameController(Content, camera, spriteBatch, thisMouse);
-          //  camera = new Camera(GraphicsDevice.Viewport);
-           // explosionView = new ExplosionView(camera, spriteBatch, new Vector2(0.5f,0.5f), Content.Load<Texture2D>("explosion"));
 
-            
+            gameController = new GameController(Content, camera, spriteBatch, thisMouse);
+            //  camera = new Camera(GraphicsDevice.Viewport);
+            // explosionView = new ExplosionView(camera, spriteBatch, new Vector2(0.5f,0.5f), Content.Load<Texture2D>("explosion"));
+
+
         }
 
         /// <summary>
@@ -89,11 +89,11 @@ namespace Game1
                 Exit();
             }
 
-            
+
             thisMouse = Mouse.GetState();
             if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
             {
-                    gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);
+                gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);
             }
             mouseClick = thisMouse;
 
@@ -110,11 +110,11 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-           gameController.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            gameController.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
-          //  explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            //  explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
-           
+
 
             base.Draw(gameTime);
         }

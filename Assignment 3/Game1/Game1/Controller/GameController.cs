@@ -21,7 +21,7 @@ namespace Game1.Controller
 
         private Texture2D explosionTexture;
 
-        List<ExplosionView> numberOfExplosions = new List<ExplosionView>(); 
+        List<ExplosionView> numberOfExplosions = new List<ExplosionView>();
 
         public GameController(ContentManager cm, Camera cam, SpriteBatch sprite, MouseState mouse)
         {
@@ -30,13 +30,13 @@ namespace Game1.Controller
             spriteBatch = sprite;
 
             explosionTexture = content.Load<Texture2D>("explosion");
-            
+
         }
 
 
         public void Draw(float elapsedtime)
         {
-            
+
             DrawExplosions(elapsedtime);
         }
 
