@@ -15,11 +15,9 @@ namespace Game1
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Camera camera;
-        ExplosionView explosionView;
-        Explosion explosion;
-        GameController gameController;
+        private GameController gameController;
+        MouseState mouseClick;
 
-        private MouseState oldState;
 
         public Game1()
         {
@@ -27,6 +25,7 @@ namespace Game1
             Content.RootDirectory = "Content";
             graphics.IsFullScreen = false;
             this.IsMouseVisible = true;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -37,7 +36,9 @@ namespace Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+
+            
+
 
             base.Initialize();
         }
@@ -48,11 +49,17 @@ namespace Game1
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            camera = new Camera(GraphicsDevice.Viewport);
-            explosionView = new ExplosionView(spriteBatch, camera, Content.Load<Texture2D>("explosion"));
+            camera = new Camera();
+            // Create a new SpriteBatch, which can be used to draw textures.
+            camera.setfieldsize(graphics.GraphicsDevice.Viewport);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            
+            gameController = new GameController(Content, camera, spriteBatch);
+          //  camera = new Camera(GraphicsDevice.Viewport);
+          //  explosionView = new ExplosionView(spriteBatch, camera, Content.Load<Texture2D>("explosion"));
+
+            
         }
 
         /// <summary>
@@ -74,18 +81,16 @@ namespace Game1
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            MouseState newState = Mouse.GetState();
-
-            if (newState.LeftButton == ButtonState.Pressed && oldState.LeftButton == ButtonState.Released)
             {
-                
-                Vector2 vec = new Vector2(newState.X, newState.Y);
-                gameController.explosionClicked(vec);
+                Exit();
             }
 
-            oldState = newState;
+            var thisMouse = Mouse.GetState();
+            if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
+            {
+                gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);            
+            }
+            mouseClick = thisMouse;
 
             // TODO: Add your update logic here
 
@@ -99,9 +104,13 @@ namespace Game1
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
-            explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
-            
+
+            gameController.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+         //   explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+
+           
+
             base.Draw(gameTime);
         }
     }

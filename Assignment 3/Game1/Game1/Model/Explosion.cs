@@ -20,6 +20,7 @@ namespace Game1.View
         private int frame;
         private int frameX;
         private int frameY;
+        private Vector2 currentPos = new Vector2();
 
         float goneTime;
         float explosionTime;
@@ -27,9 +28,11 @@ namespace Game1.View
         float expHeight;
         float scale;
 
-        public Explosion(Texture2D explosionTexture)
+        public Explosion(Texture2D explosionTexture, SpriteBatch sprite, Camera cam, float scale, Vector2 startPos)
         {
             this.explosionTexture = explosionTexture;
+
+            currentPos = startPos;
 
             explosionTime = 1000.0f;
             scale = 1.0f;

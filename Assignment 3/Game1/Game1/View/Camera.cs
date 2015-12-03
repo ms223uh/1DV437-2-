@@ -14,8 +14,9 @@ namespace Game1.View
         {
             private float scaleY;
             private float scaleX;
+            float boarderSoze = 24;
 
-            public Camera(Viewport viewport)
+            public void setfieldsize(Viewport viewport)
             {
                 scaleX = viewport.Width / 2;
                 scaleY = viewport.Height / 2;
@@ -40,6 +41,16 @@ namespace Game1.View
                 int screenY = (int)((y / scaleY));
                 return new Vector2(screenX, screenY);
             }
+
+
+            public Vector2 getMouseCord(Vector2 mouseCord)
+            {
+                float VisualX = (mouseCord.X - boarderSoze) / scaleX;
+                float VisualY = (mouseCord.Y - boarderSoze) / scaleY;
+
+                return new Vector2(VisualX, VisualY);
+            }
+
 
             public Rectangle getRectangle(float x, float y)
             {
