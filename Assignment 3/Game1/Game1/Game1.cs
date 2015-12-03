@@ -16,13 +16,17 @@ namespace Game1
         SpriteBatch spriteBatch;
         Camera camera;
         private GameController gameController;
+        ExplosionView explosionView;
         MouseState mouseClick;
+        MouseState thisMouse;
 
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 500;
+            graphics.PreferredBackBufferHeight = 500;
             graphics.IsFullScreen = false;
             this.IsMouseVisible = true;
             graphics.ApplyChanges();
@@ -55,9 +59,9 @@ namespace Game1
             camera.setfieldsize(graphics.GraphicsDevice.Viewport);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            gameController = new GameController(Content, camera, spriteBatch);
+           gameController = new GameController(Content, camera, spriteBatch, thisMouse);
           //  camera = new Camera(GraphicsDevice.Viewport);
-          //  explosionView = new ExplosionView(spriteBatch, camera, Content.Load<Texture2D>("explosion"));
+           // explosionView = new ExplosionView(camera, spriteBatch, new Vector2(0.5f,0.5f), Content.Load<Texture2D>("explosion"));
 
             
         }
@@ -85,7 +89,7 @@ namespace Game1
                 Exit();
             }
 
-            var thisMouse = Mouse.GetState();
+            thisMouse = Mouse.GetState();
             if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
             {
                 gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);            
@@ -105,9 +109,9 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            gameController.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+           gameController.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
-         //   explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+          //  explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
            
 

@@ -19,32 +19,21 @@ namespace Game1.View
         private Vector2 startPosition;
         private float scale = 0.5f;
         private Vector2 explosionPosition;
-        private Texture2D explosionTexture;
-
-        public ExplosionView(SpriteBatch sprite, Vector2 startPos, Camera cam, Texture2D explosionTexture)
-        {
-            camera = cam;
-            spriteBatch = sprite;
-            startPosition = startPos;
-
-            explosion = new Explosion(explosionTexture, spriteBatch, camera, scale, startPosition);
-        }
+        private Texture2D _explosionTexture;
 
         public ExplosionView(Camera camera, SpriteBatch spriteBatch, Vector2 explosionPosition, Texture2D explosionTexture)
         {
             this.camera = camera;
             this.spriteBatch = spriteBatch;
             this.explosionPosition = explosionPosition;
-            this.explosionTexture = explosionTexture;
+            this._explosionTexture = explosionTexture;
+            explosion = new Explosion(_explosionTexture, spriteBatch, camera, scale, explosionPosition);
         }
+
 
         public void Draw(float elapsedTime)
         {
-            spriteBatch.Begin();
-
             explosion.Draw(spriteBatch, camera, elapsedTime);
-
-            spriteBatch.End();
         }
     }
 }

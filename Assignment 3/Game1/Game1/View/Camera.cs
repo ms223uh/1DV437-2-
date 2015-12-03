@@ -14,12 +14,12 @@ namespace Game1.View
         {
             private float scaleY;
             private float scaleX;
-            float boarderSoze = 24;
+            float boarderSize = 24;
 
             public void setfieldsize(Viewport viewport)
             {
-                scaleX = viewport.Width / 2;
-                scaleY = viewport.Height / 2;
+                scaleX = viewport.Width;
+                scaleY = viewport.Height;
             }
 
             public float getScale(float radius, int boundWidth)
@@ -45,8 +45,8 @@ namespace Game1.View
 
             public Vector2 getMouseCord(Vector2 mouseCord)
             {
-                float VisualX = (mouseCord.X - boarderSoze) / scaleX;
-                float VisualY = (mouseCord.Y - boarderSoze) / scaleY;
+                float VisualX = (mouseCord.X - boarderSize) / scaleX;
+                float VisualY = (mouseCord.Y - boarderSize) / scaleY;
 
                 return new Vector2(VisualX, VisualY);
             }

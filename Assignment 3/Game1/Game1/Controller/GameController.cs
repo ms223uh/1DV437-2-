@@ -23,24 +23,22 @@ namespace Game1.Controller
 
         List<ExplosionView> numberOfExplosions = new List<ExplosionView>(); 
 
-        public GameController(ContentManager cm, Camera cam, SpriteBatch sprite)
+        public GameController(ContentManager cm, Camera cam, SpriteBatch sprite, MouseState mouse)
         {
             content = cm;
             camera = cam;
             spriteBatch = sprite;
 
             explosionTexture = content.Load<Texture2D>("explosion");
+            
         }
 
 
         public void Draw(float elapsedtime)
         {
-            spriteBatch.Begin();
+            
             DrawExplosions(elapsedtime);
-            spriteBatch.End();
-
         }
-
 
         public void DrawExplosions(float elapsedtime)
         {
@@ -49,7 +47,6 @@ namespace Game1.Controller
                 explosion.Draw(elapsedtime);
             }
         }
-
 
         public void CreateExplosion(float xCord, float yCord, SpriteBatch spriteBatch)
         {
