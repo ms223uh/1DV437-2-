@@ -19,7 +19,7 @@ namespace Game1
         ExplosionView explosionView;
         MouseState mouseClick;
         MouseState thisMouse;
-
+        public bool isClicked;
 
         public Game1()
         {
@@ -89,10 +89,11 @@ namespace Game1
                 Exit();
             }
 
+            
             thisMouse = Mouse.GetState();
             if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
             {
-                gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);            
+                    gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);
             }
             mouseClick = thisMouse;
 
