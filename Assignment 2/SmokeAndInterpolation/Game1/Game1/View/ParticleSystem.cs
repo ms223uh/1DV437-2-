@@ -14,6 +14,7 @@ namespace Game1.View
         public Vector2 smokePosition;
         Random random;
 
+        // construct
         public ParticleSystem(Vector2 position)
         {
             this.smokePosition = position;
@@ -21,6 +22,7 @@ namespace Game1.View
             smokeList = new List<SmokeSystem>();
         }
 
+        // update the smoke
         public void Update(float dt)
         {
             for (int i = 0; i < smokeList.Count; i++)
@@ -32,6 +34,7 @@ namespace Game1.View
             }
         }
 
+        // draw the smoke
         public void Draw(SpriteBatch spriteBatch, int Scale, Vector2 Offset)
         {
             for (int i = 0; i < smokeList.Count; i++)
@@ -43,6 +46,7 @@ namespace Game1.View
             }
         }
 
+        // clear the particle in the list
         public void Clear()
         {
             for (int i = 0; i < smokeList.Count; i++)
@@ -54,6 +58,8 @@ namespace Game1.View
             }
         }
 
+
+        // add particle with all the variables
         public void addParticle(Vector2 smokeSecPerSpawn, Vector2 smokeSpawnDirection, Vector2 smokeSpawnNoiseAngle, Vector2 smokeStartLife, Vector2 smokeStartScale,
                     Vector2 smokeEndScale, Color smokeStartColor1, Color smokeStartColor2, Color smokeEndColor1, Color smokeEndColor2, Vector2 smokeStartSpeed,
                     Vector2 smokeEndSpeed, int maxSmokeParticle, Vector2 smokeRelPosition, Texture2D smokeParticleSprite)

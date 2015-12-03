@@ -10,6 +10,7 @@ namespace Game1.View
 {
     class SmokeCalculate
     {
+        // calc for the smoke (time)
         public static byte smokeyCalc(byte a, byte b, double t)
         {
             return (byte)(a * (1 - t) + b * t);
@@ -23,6 +24,7 @@ namespace Game1.View
             return new Vector2(smokeyCalc(a.X, b.X, t),
                                smokeyCalc(a.Y, b.Y, t));
         }
+        // vector 2 for smokeColor
         public static Vector4 smokeyCalc(Vector4 a, Vector4 b, double t)
         {
             return new Vector4(smokeyCalc(a.X, b.X, t),
@@ -30,6 +32,8 @@ namespace Game1.View
                                smokeyCalc(a.Z, b.Z, t),
                                smokeyCalc(a.W, b.W, t));
         }
+
+        // set color for the smoke
         public static Color smokeyCalc(Color a, Color b, double t)
         {
             return new Color(smokeyCalc(a.R, b.R, t),

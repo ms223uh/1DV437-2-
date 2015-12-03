@@ -16,6 +16,7 @@ namespace Game1.View
         private SpriteBatch spriteBatch;
         private Explosion explosion;
 
+        // construct
         public GameView(SpriteBatch sprite, Camera cam, Texture2D explosionTexture)
         {
             camera = cam;
@@ -23,6 +24,7 @@ namespace Game1.View
             explosion = new Explosion(explosionTexture);
         }
 
+        // draw the explosion
         public void Draw(float elapsedTime)
         {
             spriteBatch.Begin();

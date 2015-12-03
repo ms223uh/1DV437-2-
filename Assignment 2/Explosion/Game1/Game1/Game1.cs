@@ -47,7 +47,7 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             camera = new Camera(GraphicsDevice.Viewport);
-            gameView = new GameView(spriteBatch, camera, Content.Load<Texture2D>("explosion"));
+            gameView = new GameView(spriteBatch, camera, Content.Load<Texture2D>("explosion")); // load the image
 
             // TODO: use this.Content to load your game content here
         }
@@ -84,7 +84,7 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            gameView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            gameView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds); // draw the explosion
 
             base.Draw(gameTime);
         }

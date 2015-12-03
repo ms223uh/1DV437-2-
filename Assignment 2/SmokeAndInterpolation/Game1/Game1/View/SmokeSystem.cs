@@ -33,7 +33,7 @@ namespace Game1.View
 
         public ParticleSystem particleSystem;
 
-
+        // construct
         public SmokeSystem(Vector2 SecPerSpawn, Vector2 SpawnDirection, Vector2 SpawnNoiseAngle,
                             Vector2 StartLife, Vector2 StartScale, Vector2 EndScale, Color StartColor1,
                             Color StartColor2, Color EndColor1, Color EndColor2, Vector2 StartSpeed,
@@ -64,7 +64,7 @@ namespace Game1.View
             this.lastParticle = 0.0f;
         }
 
-
+        // update particle for smoke animation
         public void Update(float elapsedTime)
         {
             lastParticle += elapsedTime;
@@ -73,15 +73,15 @@ namespace Game1.View
                 if (activeSmokeParticles.Count < maxSmokeParticle)
                 {
                     // Spawn a particle
-                    Vector2 StartDirection = Vector2.Transform(smokeSpawnDirection, Matrix.CreateRotationZ(SmokeCalculate.smokeyCalc(smokeSpawnNoiseAngle.X, smokeSpawnNoiseAngle.Y, random.NextDouble())));
+                    Vector2 StartDirection = Vector2.Transform(smokeSpawnDirection, Matrix.CreateRotationZ(SmokeCalculate.smokeyCalc(smokeSpawnNoiseAngle.X, smokeSpawnNoiseAngle.Y, random.NextDouble()))); // rotation
                     StartDirection.Normalize();
-                    Vector2 EndDirection = StartDirection * SmokeCalculate.smokeyCalc(smokeEndSpeed.X, smokeEndSpeed.Y, random.NextDouble());
-                    StartDirection *= SmokeCalculate.smokeyCalc(smokeStartSpeed.X, smokeStartSpeed.Y, random.NextDouble());
-                    activeSmokeParticles.AddLast(new SmokeParticle(
-                        smokeRelPosition + particleSystem.smokePosition,
+                    Vector2 EndDirection = StartDirection * SmokeCalculate.smokeyCalc(smokeEndSpeed.X, smokeEndSpeed.Y, random.NextDouble()); // endSpeed for smoke
+                    StartDirection *= SmokeCalculate.smokeyCalc(smokeStartSpeed.X, smokeStartSpeed.Y, random.NextDouble()); // startSpeed for smoke
+                    activeSmokeParticles.AddLast(new SmokeParticle(  // activate the smokeParticles
+                        smokeRelPosition + particleSystem.smokePosition,   // position for the smoke
                         StartDirection,
                         EndDirection,
-                        SmokeCalculate.smokeyCalc(smokeStartLife.X, smokeStartLife.Y, random.NextDouble()),
+                        SmokeCalculate.smokeyCalc(smokeStartLife.X, smokeStartLife.Y, random.NextDouble()),   // calc fot the smokeAnimation
                         SmokeCalculate.smokeyCalc(smokeStartScale.X, smokeStartScale.Y, random.NextDouble()),
                         SmokeCalculate.smokeyCalc(smokeEndScale.X, smokeEndScale.Y, random.NextDouble()),
                         SmokeCalculate.smokeyCalc(smokeStartColor1, smokeStartColor2, random.NextDouble()),
@@ -93,14 +93,16 @@ namespace Game1.View
                 spawnNextParticle = SmokeCalculate.smokeyCalc(smokeSecPerSpawn.X, smokeSecPerSpawn.Y, random.NextDouble());
             }
 
+            //spawn particle
+            // next particle in LinkedList
             LinkedListNode<SmokeParticle> smokeNode = activeSmokeParticles.First;
-            while (smokeNode != null)
+            while (smokeNode != null) // if not null/empty spawn next
             {
                 bool isAlive = smokeNode.Value.Update(elapsedTime);
                 smokeNode = smokeNode.Next;
                 if (!isAlive)
                 {
-                    if (smokeNode == null)
+                    if (smokeNode == null) // if null/empty remove last or spawn the last particle
                     {
                         activeSmokeParticles.RemoveLast();
                     }
@@ -112,7 +114,7 @@ namespace Game1.View
             }
         }
 
-
+        // draw the particles for smokeAnimatin
         public void Draw(SpriteBatch spriteBatch, int Scale, Vector2 Offset)
         {
             LinkedListNode<SmokeParticle> smokeNode = activeSmokeParticles.First;
@@ -123,6 +125,7 @@ namespace Game1.View
             }
         }
 
+        // clear the smokeParticle in endPosition
         public void Clear()
         {
             activeSmokeParticles.Clear();

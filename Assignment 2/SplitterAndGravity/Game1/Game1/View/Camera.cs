@@ -14,7 +14,7 @@ namespace Game1.View
         private float cordX;
         private float cordY;
 
-
+        // get the cordination for the viewport
         public Camera(Viewport viewport)
         {
             cordX = viewport.Width;
@@ -29,7 +29,7 @@ namespace Game1.View
                 cordY = cordX;
             }
         }
-
+        // get the cordination for the screen
         public Vector2 screenCord(Vector2 screenPosition)
         {
             int screenX = (int)((screenPosition.X * cordX));
@@ -42,7 +42,7 @@ namespace Game1.View
             Vector2 position = screenCord(screenPosition);
             float textureSize = radius * cordX;
 
-            return new Rectangle((int)(position.X - textureSize), (int)(position.Y - textureSize), (int)(textureSize * 2.0f), (int)(textureSize * 2.0f));
+            return new Rectangle((int)(position.X - textureSize), (int)(position.Y - textureSize), (int)(textureSize * 2.0f), (int)(textureSize * 2.0f)); // size and zooming of particles
         }
 
     }

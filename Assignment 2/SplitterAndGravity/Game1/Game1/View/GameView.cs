@@ -18,7 +18,7 @@ namespace Game1.View
         float durationTime;
         
         
-
+        //construct
         public GameView(SpriteBatch Sprite, Camera camera2, Texture2D particleTexture2)
         {
             spriteBatch = Sprite;
@@ -31,7 +31,7 @@ namespace Game1.View
 
         public void createParticle()
         {
-            Vector2 startPosition = new Vector2(0.5f, 0.5f);
+            Vector2 startPosition = new Vector2(0.5f, 0.5f); // postion of the splitter
             particle = new SplitterSystem(startPosition);
         }
 
@@ -39,7 +39,7 @@ namespace Game1.View
         public void Draw(float elapsedTime)
         {
             durationTime += elapsedTime;
-            if(durationTime > 2)
+            if(durationTime > 2) // set timer between animation
             {
                 createParticle();
                 durationTime = 0;
@@ -47,6 +47,7 @@ namespace Game1.View
 
             particle.Update(elapsedTime);
 
+            // draw the animation
             spriteBatch.Begin();
 
             particle.Draw(spriteBatch, camera, particleTexture);

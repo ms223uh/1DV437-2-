@@ -48,7 +48,7 @@ namespace Game1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             camera = new Camera(GraphicsDevice.Viewport);
-            gameView = new GameView(spriteBatch, camera, Content.Load<Texture2D>("spark"));
+            gameView = new GameView(spriteBatch, camera, Content.Load<Texture2D>("spark")); // load the image
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Game1
         {
             GraphicsDevice.Clear(Color.DodgerBlue);
 
-            gameView.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
+            gameView.Draw((float)gameTime.ElapsedGameTime.TotalSeconds); // call the draw function in gameView
 
             base.Draw(gameTime);
         }

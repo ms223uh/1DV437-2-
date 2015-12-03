@@ -15,6 +15,7 @@ namespace Game1.View
             private float scaleY;
             private float scaleX;
 
+            // get the mid of the screen
             public Camera(Viewport viewport)
             {
                 scaleX = viewport.Width / 2;
@@ -26,6 +27,7 @@ namespace Game1.View
                 return (radius * 2.0f) * (float)scaleX / (float)boundWidth;
             }
 
+            // get the screen cordination
             public Vector2 getScreenCord(Vector2 screenPosition)
             {
                 int screenX = (int)((screenPosition.X * scaleX));
@@ -35,7 +37,7 @@ namespace Game1.View
 
             public Rectangle getRectangle(float x, float y)
             {
-                return new Rectangle((int)(scaleX * x), (int)(scaleY * y), 50, 50);
+                return new Rectangle((int)(scaleX * x), (int)(scaleY * y), 150, 150);
             }
         }
     }

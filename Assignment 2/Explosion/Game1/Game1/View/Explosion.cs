@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Game1.View;
+using Microsoft.Xna.Framework;
 using Game1.View.Game1.View;
 
 namespace Game1.View
 {
     class Explosion
     {
-
         private Texture2D explosionTexture;
-        private int xFrames = 4;
-        private int yFrames = 8;
-        private int numberOfFrames = 24;
+        private int xframes = 4; // amount of frames in X
+        private int yframes = 8; // amount of frames in Y
+        private int numberOfFrames = 24; // amount of frames in image
         private int frame;
         private int frameX;
         private int frameY;
@@ -30,34 +27,31 @@ namespace Game1.View
         public Explosion(Texture2D explosionTexture)
         {
             this.explosionTexture = explosionTexture;
-            explosionTime = 1000.0f;
-            scale = 1.25f;
 
-            expWidth = explosionTexture.Width / xFrames;
-            expHeight = explosionTexture.Height / yFrames;
-
+            explosionTime = 1000.0f; // time for explosion
+            scale = 1.0f; // scale/size for the explosion
+            expHeight = explosionTexture.Height / yframes;
+            expWidth = explosionTexture.Width / xframes;
         }
-
 
         public void Draw(SpriteBatch spriteBatch, Camera cam, float elapsedTime)
         {
             goneTime += elapsedTime;
-            if(goneTime >= explosionTime)
+            if (goneTime >= explosionTime)
             {
-                goneTime = 0;
+                goneTime = 2; // time between explosion
             }
-
             float animatedTime = goneTime / explosionTime;
 
+            // calc for the imageAnimation
             frame = (int)(animatedTime * numberOfFrames);
-            frameX = frame % xFrames;
-            frameY = frame / yFrames;
+            frameX = frame % xframes;
+            frameY = frame / xframes;
 
+            // draw the explosion in center
             spriteBatch.Draw(explosionTexture, cam.getScreenCord(new Vector2(1.0f, 1.0f)),
                 new Rectangle((int)(expWidth * frameX), (int)(expHeight * frameY), (int)expWidth, (int)expHeight),
                 Color.White, 0, new Vector2(expWidth / 2, expHeight / 2), scale, SpriteEffects.None, 0);
-
         }
-
     }
 }
