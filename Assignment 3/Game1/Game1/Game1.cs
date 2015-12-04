@@ -93,7 +93,7 @@ namespace Game1
             thisMouse = Mouse.GetState();
             if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
             {
-                gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch);
+                gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
             }
             mouseClick = thisMouse;
 

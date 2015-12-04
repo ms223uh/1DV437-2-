@@ -26,7 +26,7 @@ namespace Game1.View
         float explosionTime;
         float expWidth;
         float expHeight;
-        float size = 0.5f;
+        float size = 0.2f;
         float scale;
 
         private int frameCount = 0;
@@ -50,7 +50,7 @@ namespace Game1.View
         {
             frameCount++;
 
-            if (frameCount <= 55)
+            if (frameCount <= 52)
             {
 
                 goneTime += elapsedTime;

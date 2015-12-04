@@ -17,7 +17,7 @@ namespace Game1.View
         private Explosion explosion;
 
         private Vector2 startPosition;
-        private float scale = 0.5f;
+        private float scale = 0.1f;
         private Vector2 explosionPosition;
         private Texture2D _explosionTexture;
 

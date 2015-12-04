@@ -41,10 +41,16 @@
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Explosion.cs" />
+    <Compile Include="Model\Particle.cs" />
+    <Compile Include="Model\ParticleSystem.cs" />
+    <Compile Include="Model\SmokeParticle.cs" />
+    <Compile Include="Model\SplitterParticle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Camera.cs" />
     <Compile Include="View\ExplosionView.cs" />
+    <Compile Include="View\SmokeView.cs" />
+    <Compile Include="View\SplitterView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -55,6 +61,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\explosion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\smokePic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\spark.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

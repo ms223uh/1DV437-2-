@@ -21,8 +21,13 @@ namespace Game1.Controller
 
         private Texture2D explosionTexture;
         private Texture2D splitterTexture;
+        private Texture2D smokeTexture;
+        private SplitterView splitterView;
+        private SmokeView smokeView;
 
         List<ExplosionView> numberOfExplosions = new List<ExplosionView>();
+
+        public static Camera Sprite { get; private set; }
 
         public GameController(ContentManager cm, Camera cam, SpriteBatch sprite, MouseState mouse)
         {
@@ -32,6 +37,11 @@ namespace Game1.Controller
 
             explosionTexture = content.Load<Texture2D>("explosion");
             splitterTexture = content.Load<Texture2D>("spark");
+            smokeTexture = content.Load<Texture2D>("smokePic");
+
+            splitterView = new SplitterView(spriteBatch,camera, splitterTexture);
+            smokeView = new SmokeView(spriteBatch, camera, smokeTexture);
+
 
         }
 
@@ -40,6 +50,8 @@ namespace Game1.Controller
         {
 
             DrawExplosions(elapsedtime);
+            splitterView.Draw(elapsedtime, spriteBatch, camera, splitterTexture);
+            smokeView.Draw(elapsedtime, spriteBatch, camera, smokeTexture);
         }
 
         public void DrawExplosions(float elapsedtime)
@@ -50,7 +62,7 @@ namespace Game1.Controller
             }
         }
 
-        public void CreateExplosion(float xCord, float yCord, SpriteBatch spriteBatch)
+        public void CreateExplosion(float xCord, float yCord, SpriteBatch spriteBatch, float elapsedTime)
         {
             Vector2 mouseClick = new Vector2(xCord, yCord);
             Vector2 explosionPosition = camera.getMouseCord(mouseClick);
@@ -58,6 +70,9 @@ namespace Game1.Controller
             if (explosionPosition.X <= 1f && explosionPosition.X >= 0f && explosionPosition.Y <= 1f && explosionPosition.Y >= 0f)
             {
                 numberOfExplosions.Add(new ExplosionView(camera, spriteBatch, explosionPosition, explosionTexture));
+                splitterView.createParticle(explosionPosition);
+                smokeView.createParticle(explosionPosition);
+
             }
 
         }
