@@ -27,7 +27,7 @@ namespace Game1.View
             this.spriteBatch = spriteBatch;
             this.explosionPosition = explosionPosition;
             this._explosionTexture = explosionTexture;
-            explosion = new Explosion(_explosionTexture, spriteBatch, camera, scale, explosionPosition);
+            explosion = new Explosion(_explosionTexture, spriteBatch, camera, explosionPosition);
         }
 
 

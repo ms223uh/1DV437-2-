@@ -26,20 +26,22 @@ namespace Game1.View
         float explosionTime;
         float expWidth;
         float expHeight;
-        float _scale;
+        float size = 0.5f;
+        float scale;
 
         private int frameCount = 0;
 
-        public Explosion(Texture2D explosionTexture, SpriteBatch sprite, Camera cam, float scale, Vector2 startPos)
+        public Explosion(Texture2D explosionTexture, SpriteBatch sprite, Camera cam, Vector2 startPos)
         {
             this.explosionTexture = explosionTexture;
             camera = cam;
             currentPos = startPos;
 
             explosionTime = 1000.0f;
-            _scale = scale;
             expHeight = explosionTexture.Height / yframes;
             expWidth = explosionTexture.Width / xframes;
+
+            scale = camera.getScale(expWidth, size);
         }
 
 
@@ -63,9 +65,9 @@ namespace Game1.View
                 frameY = frame / xframes;
 
                 spriteBatch.Begin();
-                spriteBatch.Draw(explosionTexture, camera.getScreenCord(new Vector2(0.5f, 0.5f)),
+                spriteBatch.Draw(explosionTexture, camera.getScreenCord(currentPos),
                 new Rectangle((int)(expWidth * frameX), (int)(expHeight * frameY), (int)expWidth, (int)expHeight),
-                Color.White, 0, new Vector2(expWidth / 2, expHeight / 2), _scale, SpriteEffects.None, 0);
+                Color.White, 0, new Vector2(expWidth / 2, expHeight / 2), scale, SpriteEffects.None, 0);
                 spriteBatch.End();
 
             }

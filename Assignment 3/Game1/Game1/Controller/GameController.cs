@@ -20,6 +20,7 @@ namespace Game1.Controller
         private SpriteBatch spriteBatch;
 
         private Texture2D explosionTexture;
+        private Texture2D splitterTexture;
 
         List<ExplosionView> numberOfExplosions = new List<ExplosionView>();
 
@@ -30,6 +31,7 @@ namespace Game1.Controller
             spriteBatch = sprite;
 
             explosionTexture = content.Load<Texture2D>("explosion");
+            splitterTexture = content.Load<Texture2D>("spark");
 
         }
 

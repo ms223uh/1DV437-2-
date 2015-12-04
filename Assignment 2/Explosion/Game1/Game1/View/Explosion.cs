@@ -28,7 +28,7 @@ namespace Game1.View
         {
             this.explosionTexture = explosionTexture;
 
-            explosionTime = 1000.0f; // time for explosion
+            explosionTime = 3000.0f; // time for explosion
             scale = 1.0f; // scale/size for the explosion
             expHeight = explosionTexture.Height / yframes;
             expWidth = explosionTexture.Width / xframes;

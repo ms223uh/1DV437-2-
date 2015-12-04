@@ -12,41 +12,39 @@ namespace Game1.View
     {
         class Camera
         {
-            private float scaleY;
-            private float scaleX;
+            private float scale;
             float boarderSize = 24;
 
             public void setfieldsize(Viewport viewport)
             {
-                scaleX = viewport.Width;
-                scaleY = viewport.Height;
+                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - boarderSize*2);
             }
 
-            public float getScale(float radius, int boundWidth)
+            public float getScale(float texturesize, float size)
             {
-                return (radius * 2.0f) * (float)scaleX / (float)boundWidth;
+                return size / texturesize / scale;
             }
 
             public Vector2 getScreenCord(Vector2 screenPosition)
             {
-                int screenX = (int)((screenPosition.X * scaleX));
-                int screenY = (int)((screenPosition.Y * scaleY));
+                int screenX = (int)boarderSize + (int)((screenPosition.X / scale));
+                int screenY = (int)boarderSize + (int)((screenPosition.Y / scale));
                 return new Vector2(screenX, screenY);
             }
 
 
             public Vector2 getLogicalCord(float x, float y)
             {
-                int screenX = (int)((x / scaleX));
-                int screenY = (int)((y / scaleY));
+                int screenX = (int)((x / scale));
+                int screenY = (int)((y / scale));
                 return new Vector2(screenX, screenY);
             }
 
 
             public Vector2 getMouseCord(Vector2 mouseCord)
             {
-                float VisualX = (mouseCord.X - boarderSize) / scaleX;
-                float VisualY = (mouseCord.Y - boarderSize) / scaleY;
+                float VisualX = (mouseCord.X - boarderSize) * scale;
+                float VisualY = (mouseCord.Y - boarderSize) * scale;
 
                 return new Vector2(VisualX, VisualY);
             }
@@ -54,7 +52,7 @@ namespace Game1.View
 
             public Rectangle getRectangle(float x, float y)
             {
-                return new Rectangle((int)(scaleX * x), (int)(scaleY * y), 150, 150);
+                return new Rectangle((int)(scale * x), (int)(scale * y), 150, 150);
             }
         }
     }
