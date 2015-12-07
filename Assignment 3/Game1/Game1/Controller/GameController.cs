@@ -63,11 +63,11 @@ namespace Game1.Controller
 
         public void Draw(float elapsedtime)
         {
-
-            DrawExplosions(elapsedtime);
-            splitterView.Draw(elapsedtime, spriteBatch, camera, splitterTexture);
-            smokeView.Draw(elapsedtime, spriteBatch, camera, smokeTexture);
+            
             ballView.Draw(spriteBatch);
+            DrawExplosions(elapsedtime);
+            smokeView.Draw(elapsedtime, spriteBatch, camera, smokeTexture);
+            splitterView.Draw(elapsedtime, spriteBatch, camera, splitterTexture);
         }
 
         public void DrawExplosions(float elapsedtime)
