@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Game1.View.Game1.View;
 using Game1.View;
+using Ball.View;
+using Ball.Model;
 
 namespace Game1.Controller
 {
@@ -25,22 +27,35 @@ namespace Game1.Controller
         private SplitterView splitterView;
         private SmokeView smokeView;
 
+        private Texture2D ballTexture;
+        private BallView ballView;
+        private BallSimulation ballSim;
+        private GraphicsDevice graphics;
+
         List<ExplosionView> numberOfExplosions = new List<ExplosionView>();
+       
 
         public static Camera Sprite { get; private set; }
 
-        public GameController(ContentManager cm, Camera cam, SpriteBatch sprite, MouseState mouse)
+        public GameController(ContentManager cm, Camera cam, SpriteBatch sprite, MouseState mouse, GraphicsDevice graphics, BallSimulation ballSim)
         {
             content = cm;
             camera = cam;
             spriteBatch = sprite;
+            this.graphics = graphics;
+            this.ballSim = ballSim;
 
             explosionTexture = content.Load<Texture2D>("explosion");
             splitterTexture = content.Load<Texture2D>("spark");
             smokeTexture = content.Load<Texture2D>("smokePic");
+            ballTexture = content.Load<Texture2D>("ball");
+            
+
 
             splitterView = new SplitterView(spriteBatch,camera, splitterTexture);
             smokeView = new SmokeView(spriteBatch, camera, smokeTexture);
+            ballView = new BallView(ballSim, camera, graphics, ballTexture);
+           
 
 
         }
@@ -52,6 +67,7 @@ namespace Game1.Controller
             DrawExplosions(elapsedtime);
             splitterView.Draw(elapsedtime, spriteBatch, camera, splitterTexture);
             smokeView.Draw(elapsedtime, spriteBatch, camera, smokeTexture);
+            ballView.Draw(spriteBatch);
         }
 
         public void DrawExplosions(float elapsedtime)

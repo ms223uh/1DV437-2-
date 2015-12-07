@@ -12,12 +12,19 @@ namespace Game1.View
     {
         class Camera
         {
+            
             private float scale;
-            float boarderSize = 24;
+            float borderSize = 42;
+            private Viewport viewport;
 
-            public void setfieldsize(Viewport viewport)
+            public Camera(Viewport viewPort)
             {
-                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - boarderSize*2);
+                this.viewport = viewPort;
+            }
+
+            public void setfieldsize()
+            {
+                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - borderSize * 2);
             }
 
             public float getScale(float texturesize, float size)
@@ -27,8 +34,8 @@ namespace Game1.View
 
             public Vector2 getScreenCord(Vector2 screenPosition)
             {
-                int screenX = (int)boarderSize + (int)((screenPosition.X / scale));
-                int screenY = (int)boarderSize + (int)((screenPosition.Y / scale));
+                int screenX = (int)borderSize + (int)((screenPosition.X / scale));
+                int screenY = (int)borderSize + (int)((screenPosition.Y / scale));
                 return new Vector2(screenX, screenY);
             }
 
@@ -43,8 +50,8 @@ namespace Game1.View
 
             public Vector2 getMouseCord(Vector2 mouseCord)
             {
-                float VisualX = (mouseCord.X - boarderSize) * scale;
-                float VisualY = (mouseCord.Y - boarderSize) * scale;
+                float VisualX = (mouseCord.X - borderSize) * scale;
+                float VisualY = (mouseCord.Y - borderSize) * scale;
 
                 return new Vector2(VisualX, VisualY);
             }
@@ -54,6 +61,19 @@ namespace Game1.View
             {
                 return new Rectangle((int)(scale * x), (int)(scale * y), 150, 150);
             }
+
+            public Rectangle gameArea()
+            {
+                return new Rectangle((int)borderSize, (int)borderSize, (int)viewport.Width, (int)viewport.Height);
+            }
+
+            //scale the ball, here can we set the size for the ball
+            public float ballScale(float radius, int ballWidth)
+            {
+                return (radius * 2.0f) * (float)viewport.Width / (int)ballWidth;
+            }
+
+
         }
     }
 }

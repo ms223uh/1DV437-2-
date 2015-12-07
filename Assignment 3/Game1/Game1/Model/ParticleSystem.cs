@@ -15,7 +15,7 @@ namespace Game1.View
         private int numberOfParticles = 100;  // amount of particles
 
         // System for simulate the particles in the array
-        public ParticleSystem(Vector2 startPosition,int numpart = 55)
+        public ParticleSystem(Vector2 startPosition, int numpart = 55)
         {
             numberOfParticles = numpart;
             particles = new ParticleType[numberOfParticles];

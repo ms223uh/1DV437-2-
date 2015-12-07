@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Game1.View;
 using Game1.View.Game1.View;
 using Game1.Controller;
+using Ball.Model;
 
 namespace Game1
 {
@@ -20,13 +21,14 @@ namespace Game1
         MouseState mouseClick;
         MouseState thisMouse;
         public bool isClicked;
+        BallSimulation ballSim;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 500;
-            graphics.PreferredBackBufferHeight = 500;
+            graphics.PreferredBackBufferWidth = 600;
+            graphics.PreferredBackBufferHeight = 600;
             graphics.IsFullScreen = false;
             this.IsMouseVisible = true;
             graphics.ApplyChanges();
@@ -54,12 +56,12 @@ namespace Game1
         protected override void LoadContent()
         {
 
-            camera = new Camera();
+            camera = new Camera(graphics.GraphicsDevice.Viewport);
             // Create a new SpriteBatch, which can be used to draw textures.
-            camera.setfieldsize(graphics.GraphicsDevice.Viewport);
+            camera.setfieldsize();
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            gameController = new GameController(Content, camera, spriteBatch, thisMouse);
+            ballSim = new BallSimulation();
+            gameController = new GameController(Content, camera, spriteBatch, thisMouse, GraphicsDevice, ballSim);
             //  camera = new Camera(GraphicsDevice.Viewport);
             // explosionView = new ExplosionView(camera, spriteBatch, new Vector2(0.5f,0.5f), Content.Load<Texture2D>("explosion"));
 
