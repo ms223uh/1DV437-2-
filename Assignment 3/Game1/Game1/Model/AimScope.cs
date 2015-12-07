@@ -10,7 +10,7 @@ namespace Game1.Model
     class AimScope
     {
 
-        private float radius = 0.05f;
+        private float radius = 0.5f;
 
         public float Radius
         {

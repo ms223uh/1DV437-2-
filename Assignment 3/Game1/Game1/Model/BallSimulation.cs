@@ -14,7 +14,7 @@ namespace Ball.Model
 
         Ball ball;
 
-        private const int numberOfBalls = 10;
+        private const int numberOfBalls = 1;
         private Ball[] balls = new Ball[numberOfBalls];
         AimScope aim = new AimScope();
 
@@ -70,7 +70,7 @@ namespace Ball.Model
                         ballPosition.X <= (mousePosition.X + aim.Radius))
                     {
                         ball.ballAlive = false;
-                        view.HitBall(ballPosition.X, ballPosition.Y);
+                        view.CreateExplosion(ballPosition.X, ballPosition.Y);
                     }
                 }
             }

@@ -2,6 +2,6 @@
 {
     interface IModelListener1
     {
-        void HitBall(float x, float y);
+        void CreateExplosion(float x, float y);
     }
 }

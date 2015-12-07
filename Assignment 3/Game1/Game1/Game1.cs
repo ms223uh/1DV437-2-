@@ -23,6 +23,7 @@ namespace Game1
         public bool isClicked;
         BallSimulation ballSim;
         
+        
 
         public Game1()
         {
@@ -97,8 +98,12 @@ namespace Game1
             if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
             {
                 gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
+               
             }
             mouseClick = thisMouse;
+
+
+
 
 
             ballSim.simUpdate((float)gameTime.ElapsedGameTime.TotalSeconds);
