@@ -31,6 +31,7 @@ namespace Game1.Controller
         private BallView ballView;
         private BallSimulation ballSim;
         private GraphicsDevice graphics;
+        
 
         List<ExplosionView> numberOfExplosions = new List<ExplosionView>();
        
@@ -55,7 +56,7 @@ namespace Game1.Controller
             splitterView = new SplitterView(spriteBatch,camera, splitterTexture);
             smokeView = new SmokeView(spriteBatch, camera, smokeTexture);
             ballView = new BallView(ballSim, camera, graphics, ballTexture);
-           
+            
 
 
         }
@@ -68,6 +69,8 @@ namespace Game1.Controller
             DrawExplosions(elapsedtime);
             smokeView.Draw(elapsedtime, spriteBatch, camera, smokeTexture);
             splitterView.Draw(elapsedtime, spriteBatch, camera, splitterTexture);
+
+
         }
 
         public void DrawExplosions(float elapsedtime)
@@ -88,7 +91,7 @@ namespace Game1.Controller
                 numberOfExplosions.Add(new ExplosionView(camera, spriteBatch, explosionPosition, explosionTexture));
                 splitterView.createParticle(explosionPosition);
                 smokeView.createParticle(explosionPosition);
-
+                
             }
 
         }

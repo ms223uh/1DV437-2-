@@ -22,6 +22,7 @@ namespace Game1
         MouseState thisMouse;
         public bool isClicked;
         BallSimulation ballSim;
+        
 
         public Game1()
         {
@@ -99,7 +100,9 @@ namespace Game1
             }
             mouseClick = thisMouse;
 
-            // TODO: Add your update logic here
+
+            ballSim.simUpdate((float)gameTime.ElapsedGameTime.TotalSeconds);
+
 
             base.Update(gameTime);
         }

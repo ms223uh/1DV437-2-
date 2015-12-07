@@ -17,7 +17,7 @@ namespace Ball.Model
 
         public Ball()
         {
-            ballPosition = new Vector2(0.4f, 0.4f);
+            ballPosition = new Vector2(0.5f, 0.5f);
             // ballSpeed = new Vector2(velocity, velocity);
             ballSpeed = velocity2;
         }

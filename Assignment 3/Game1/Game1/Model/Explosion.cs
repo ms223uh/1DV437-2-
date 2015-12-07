@@ -50,7 +50,7 @@ namespace Game1.View
         {
             frameCount++;
 
-            if (frameCount <= 48)
+            if (frameCount <= 42)
             {
 
                 goneTime += elapsedTime;

@@ -14,7 +14,7 @@ namespace Game1.View
         {
             
             private float scale;
-            float borderSize = 42;
+            float borderSize = 0;
             private Viewport viewport;
 
             public Camera(Viewport viewPort)
@@ -24,7 +24,7 @@ namespace Game1.View
 
             public void setfieldsize()
             {
-                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - borderSize * 2);
+                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - borderSize / 2);
             }
 
             public float getScale(float texturesize, float size)
