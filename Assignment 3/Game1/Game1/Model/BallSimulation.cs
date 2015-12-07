@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Game1.Model;
 
 namespace Ball.Model
 {
@@ -12,9 +13,19 @@ namespace Ball.Model
     {
 
         Ball ball;
+
+        private const int numberOfBalls = 10;
+        private Ball[] balls = new Ball[numberOfBalls];
+        AimScope aim = new AimScope();
+
         public BallSimulation()
         {
-            ball = new Ball();
+            
+            for (int i = 0; i < numberOfBalls; i++)
+            {
+                ball = new Ball();
+            }
+            
         }
         
         public Vector2 simBallPosition()
@@ -42,8 +53,27 @@ namespace Ball.Model
             {
                 ball.setBallSpeedY();
             }
-            
 
+        }
+
+
+        internal void HitBall(Vector2 mousePosition, IModelListener1 view)
+        {
+            foreach (Ball ball in balls)
+            {
+                if (ball.ballAlive)
+                {
+                    Vector2 ballPosition = ball.getBallPosition();
+                    if (ballPosition.Y >= (mousePosition.Y - aim.Radius) &&
+                        ballPosition.Y <= (mousePosition.Y + aim.Radius) &&
+                        ballPosition.X >= (mousePosition.X - aim.Radius) &&
+                        ballPosition.X <= (mousePosition.X + aim.Radius))
+                    {
+                        ball.ballAlive = false;
+                        view.HitBall(ballPosition.X, ballPosition.Y);
+                    }
+                }
+            }
         }
 
     }

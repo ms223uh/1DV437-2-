@@ -40,9 +40,11 @@
   <ItemGroup>
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Model\AimScope.cs" />
     <Compile Include="Model\Ball.cs" />
     <Compile Include="Model\BallSimulation.cs" />
     <Compile Include="Model\Explosion.cs" />
+    <Compile Include="Model\IModelListener1.cs" />
     <Compile Include="Model\Particle.cs" />
     <Compile Include="Model\ParticleSystem.cs" />
     <Compile Include="Model\SmokeParticle.cs" />

@@ -14,6 +14,8 @@ namespace Ball.Model
         Vector2 ballSpeed;
         float ballRadius = 0.05f; // size and collisionArea for the ball
         Vector2 velocity2 = new Vector2(0.7f, 0.3f); // speed and direction for the ball
+        private Random random;
+        private bool alive = true;
 
         public Ball()
         {
@@ -21,6 +23,13 @@ namespace Ball.Model
             // ballSpeed = new Vector2(velocity, velocity);
             ballSpeed = velocity2;
         }
+
+        public Ball(Random random)
+        {
+            this.random = random;
+        }
+
+       
 
         // update the direction/postion and speed
         public void updateBallPosition(float time)
@@ -71,6 +80,11 @@ namespace Ball.Model
             return ballRadius;
         }
 
+        public bool ballAlive
+        {
+            get { return alive; }
+            set { alive = value; }
+        }
 
     }
 }
