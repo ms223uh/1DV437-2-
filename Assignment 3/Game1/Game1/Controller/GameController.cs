@@ -32,6 +32,7 @@ namespace Game1.Controller
         private BallSimulation ballSim;
         private GraphicsDevice graphics;
 
+        private SoundEffect pistolEffect;
         
         
 
@@ -52,8 +53,8 @@ namespace Game1.Controller
             splitterTexture = content.Load<Texture2D>("spark");
             smokeTexture = content.Load<Texture2D>("smokePic");
             ballTexture = content.Load<Texture2D>("ball");
+            pistolEffect = content.Load<SoundEffect>("fire");
             
-
 
             splitterView = new SplitterView(spriteBatch,camera, splitterTexture);
             smokeView = new SmokeView(spriteBatch, camera, smokeTexture);
@@ -90,6 +91,7 @@ namespace Game1.Controller
 
             if (explosionPosition.X <= 1f && explosionPosition.X >= 0f && explosionPosition.Y <= 1f && explosionPosition.Y >= 0f)
             {
+                pistolEffect.Play(0.1f, 0.0f, 0.0f);
                 numberOfExplosions.Add(new ExplosionView(camera, spriteBatch, explosionPosition, explosionTexture));
                 splitterView.createParticle(explosionPosition);
                 smokeView.createParticle(explosionPosition);

@@ -22,8 +22,9 @@ namespace Game1
         MouseState thisMouse;
         public bool isClicked;
         BallSimulation ballSim;
-        
-        
+
+        private Texture2D aimScope;
+        private Vector2 cursorPos;
 
         public Game1()
         {
@@ -32,7 +33,7 @@ namespace Game1
             graphics.PreferredBackBufferWidth = 600;
             graphics.PreferredBackBufferHeight = 600;
             graphics.IsFullScreen = false;
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
             graphics.ApplyChanges();
         }
 
@@ -66,7 +67,7 @@ namespace Game1
             gameController = new GameController(Content, camera, spriteBatch, thisMouse, GraphicsDevice, ballSim);
             //  camera = new Camera(GraphicsDevice.Viewport);
             // explosionView = new ExplosionView(camera, spriteBatch, new Vector2(0.5f,0.5f), Content.Load<Texture2D>("explosion"));
-
+            aimScope = Content.Load<Texture2D>("aim2");
 
         }
 
@@ -104,7 +105,7 @@ namespace Game1
             mouseClick = thisMouse;
 
 
-
+            cursorPos = new Vector2(thisMouse.X, thisMouse.Y);
 
 
             ballSim.simUpdate((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -125,7 +126,9 @@ namespace Game1
 
             //  explosionView.Draw((float)gameTime.ElapsedGameTime.TotalMilliseconds);
 
-
+            spriteBatch.Begin();
+            spriteBatch.Draw(aimScope, cursorPos, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
