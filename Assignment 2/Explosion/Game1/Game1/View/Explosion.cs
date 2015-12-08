@@ -29,13 +29,14 @@ namespace Game1.View
             this.explosionTexture = explosionTexture;
 
             explosionTime = 3000.0f; // time for explosion
-            scale = 1.0f; // scale/size for the explosion
+            
             expHeight = explosionTexture.Height / yframes;
             expWidth = explosionTexture.Width / xframes;
         }
 
         public void Draw(SpriteBatch spriteBatch, Camera cam, float elapsedTime)
         {
+            scale = cam.getScale(1.0f, explosionTexture.Bounds.Width);
             goneTime += elapsedTime;
             if (goneTime >= explosionTime)
             {
