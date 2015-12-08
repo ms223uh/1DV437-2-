@@ -14,70 +14,80 @@ namespace Ball.Model
 
         Ball ball;
 
-        private const int numberOfBalls = 1;
-        private Ball[] balls = new Ball[numberOfBalls];
         
+        private Ball[] balls = new Ball[numberOfBalls];
+        private const int numberOfBalls = 10;
+
+        Random random;
 
         public BallSimulation()
         {
-            
+            random = new Random();
+
             for (int i = 0; i < numberOfBalls; i++)
             {
-                ball = new Ball();
+                balls[i] = new Ball(random);
             }
-            
-        }
-        
-        public Vector2 simBallPosition()
-        {
-            return ball.getBallPosition();
+
         }
 
-        public float simBallRadius()
-        {
-            return ball.getBallRadius();
-        }
+        //public Vector2 simBallPosition()
+        //{
+        //    return ball.getBallPosition();
+        //}
+
+        //public float simBallRadius()
+        //{
+        //    return ball.getBallRadius();
+        //}
 
         // set collision in wall, ball colloide in postion 1 & 0, between its free example: 0,5 the ball not collide
         public void simUpdate(float gameTime)
         {
-            if (ball.ballAlive)
-            {
-
-                ball.updateBallPosition(gameTime);
-
-                if (ball.getBallPosition().X + ball.getBallRadius() > 1 || ball.getBallPosition().X - ball.getBallRadius() < 0)
+            foreach(Ball ball in balls) {
+                if (ball.ballAlive)
                 {
-                    ball.setBallSpeedX();
+
+                    ball.updateBallPosition(gameTime);
+
+                    if (ball.getBallPosition().X + ball.getBallRadius() > 1 || ball.getBallPosition().X - ball.getBallRadius() < 0)
+                    {
+                        ball.setBallSpeedX();
+                    }
+
+
+                    if (ball.getBallPosition().Y + ball.getBallRadius() > 1 || ball.getBallPosition().Y - ball.getBallRadius() < 0)
+                    {
+                        ball.setBallSpeedY();
+                    }
                 }
-
-
-                if (ball.getBallPosition().Y + ball.getBallRadius() > 1 || ball.getBallPosition().Y - ball.getBallRadius() < 0)
-                {
-                    ball.setBallSpeedY();
-                }
-
             }
         }
 
+        internal IEnumerable<Ball> getBalls()
+        {
+            return balls;
+        }
 
         public void hitBall(Vector2 mousePosition)
         {
-            if (ball.ballAlive)
+            foreach (Ball ball in balls)
             {
-                Vector2 ballPosition = ball.getBallPosition();
-                if(ballPosition.Y >= (mousePosition.Y - ball.getBallRadius()) &&
-                   ballPosition.Y <= (mousePosition.Y + ball.getBallRadius()) &&
-                   ballPosition.X >= (mousePosition.X - ball.getBallRadius()) &&
-                   ballPosition.X <= (mousePosition.X + ball.getBallRadius()))
+                if (ball.ballAlive)
                 {
-                    ball.ballAlive = false;
+                    Vector2 ballPosition = ball.getBallPosition();
+                    if (ballPosition.Y >= (mousePosition.Y - ball.getBallRadius()) &&
+                       ballPosition.Y <= (mousePosition.Y + ball.getBallRadius()) &&
+                       ballPosition.X >= (mousePosition.X - ball.getBallRadius()) &&
+                       ballPosition.X <= (mousePosition.X + ball.getBallRadius()))
+                    {
+                        ball.ballAlive = false;
+                    }
+
+
                 }
-
-
             }
         }
-
 
     }
 }

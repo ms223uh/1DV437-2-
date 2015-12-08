@@ -12,6 +12,7 @@ namespace Ball.View
 {
     class BallView
     {
+        
         BallSimulation ballSimulation;
         Camera camera;
         Texture2D ballTexture;
@@ -32,19 +33,24 @@ namespace Ball.View
         // draw the gameArea and set color
         public void Draw(SpriteBatch sprite)
         {
-           float psyBallScale = camera.ballScale(ballSimulation.simBallRadius(), ballTexture.Bounds.Width);
+           
 
             sprite.Begin();
 
+      
             sprite.Draw(gameBox, camera.gameArea(), Color.CornflowerBlue);
-             sprite.Draw(ballTexture,
-                              camera.getScreenCord(ballSimulation.simBallPosition()),
-                              ballTexture.Bounds,
-                              Color.White, 0,
-                              new Vector2(ballTexture.Bounds.Width / 2, ballTexture.Height / 2),
-                              psyBallScale, SpriteEffects.None, 0
-                 );
 
+            foreach (Model.Ball ball in ballSimulation.getBalls())
+            {
+                float psyBallScale = camera.ballScale(ball.getBallRadius(), ballTexture.Bounds.Width);
+                sprite.Draw(ballTexture,
+                                  camera.getScreenCord(ball.getBallPosition()),
+                                  ballTexture.Bounds,
+                                  Color.White, 0,
+                                  new Vector2(ballTexture.Bounds.Width / 2, ballTexture.Height / 2),
+                                  psyBallScale, SpriteEffects.None, 0
+                     );
+            }
              sprite.End();
         }
 

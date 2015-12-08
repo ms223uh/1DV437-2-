@@ -13,15 +13,20 @@ namespace Ball.Model
         Vector2 ballPosition;
         Vector2 ballSpeed;
         float ballRadius = 0.05f; // size and collisionArea for the ball
-        Vector2 velocity2 = new Vector2(0.7f, 0.3f); // speed and direction for the ball
+       // Vector2 velocity2 = new Vector2(0.7f, 0.3f); // speed and direction for the ball
         private bool alive = true;
-        
-        
 
-        public Ball()
+        Vector2 velocity2;
+
+
+
+        public Ball(Random random)
         {
-            ballPosition = new Vector2(0.5f, 0.5f);
-           // ballSpeed = new Vector2(velocity, velocity);
+            ballPosition = new Vector2(0.7f, 0.2f);
+            // ballSpeed = new Vector2(velocity, velocity);
+
+            velocity2 = new Vector2((float)(random.NextDouble() - 0.7f ), (float)(random.NextDouble() - 0.2f));
+
             ballSpeed = velocity2;
         }
 
@@ -47,27 +52,17 @@ namespace Ball.Model
         // function get/set ballspeed
         public void setBallSpeedX()
         {
-            if (ballSpeed.X < 0)
-            {
-                ballSpeed.X = velocity2.X;
-            }
-            else
-            {
-                ballSpeed.X =- ballSpeed.X;
-            }
+           
+                ballSpeed.X = -ballSpeed.X;
+            
         }
 
         // function get/set ballspeed
         public void setBallSpeedY()
         {
-            if (ballSpeed.Y < 0)
-            {
-                ballSpeed.Y = velocity2.Y;
-            }
-            else
-            {
-                ballSpeed.Y =- ballSpeed.Y;
-            }
+           
+                ballSpeed.Y = -ballSpeed.Y;
+            
         }
 
         public float getBallRadius()
