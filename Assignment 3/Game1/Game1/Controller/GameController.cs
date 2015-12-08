@@ -31,10 +31,12 @@ namespace Game1.Controller
         private BallView ballView;
         private BallSimulation ballSim;
         private GraphicsDevice graphics;
+
+        
         
 
         List<ExplosionView> numberOfExplosions = new List<ExplosionView>();
-       
+        
 
         public static Camera Sprite { get; private set; }
 
@@ -96,5 +98,9 @@ namespace Game1.Controller
 
         }
 
+        internal Vector2 getLogicalCord(int x, int y)
+        {
+            return camera.getLogicalCord(x, y);
+        }
     }
 }

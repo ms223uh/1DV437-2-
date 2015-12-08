@@ -14,7 +14,7 @@ namespace Game1.View
         {
             
             private float scale;
-            float borderSize = 0;
+            float borderSize = 12;
             private Viewport viewport;
 
             public Camera(Viewport viewPort)
@@ -24,7 +24,7 @@ namespace Game1.View
 
             public void setfieldsize()
             {
-                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - borderSize / 2);
+                scale = 1f / (Math.Min(viewport.Width, viewport.Height) - borderSize * 2);
             }
 
             public float getScale(float texturesize, float size)
@@ -40,10 +40,10 @@ namespace Game1.View
             }
 
 
-            public Vector2 getLogicalCord(float x, float y)
+            public Vector2 getLogicalCord(int x, int y)
             {
-                int screenX = (int)((x / scale));
-                int screenY = (int)((y / scale));
+                float screenX = ((x * scale));
+                float screenY = ((y * scale));
                 return new Vector2(screenX, screenY);
             }
 
@@ -64,7 +64,7 @@ namespace Game1.View
 
             public Rectangle gameArea()
             {
-                return new Rectangle((int)borderSize, (int)borderSize, (int)viewport.Width, (int)viewport.Height);
+                return new Rectangle((int)borderSize, (int)borderSize, (int)(viewport.Width - (borderSize * 2)), (int)(viewport.Height - (borderSize * 2)));
             }
 
             //scale the ball, here can we set the size for the ball

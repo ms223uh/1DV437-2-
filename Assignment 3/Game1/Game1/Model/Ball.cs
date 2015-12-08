@@ -14,8 +14,9 @@ namespace Ball.Model
         Vector2 ballSpeed;
         float ballRadius = 0.05f; // size and collisionArea for the ball
         Vector2 velocity2 = new Vector2(0.7f, 0.3f); // speed and direction for the ball
-        
         private bool alive = true;
+        
+        
 
         public Ball()
         {

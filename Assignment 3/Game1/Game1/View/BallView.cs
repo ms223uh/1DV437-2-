@@ -25,7 +25,7 @@ namespace Ball.View
             ballTexture = psyBall;
 
             gameBox = new Texture2D(graphics, 1, 1);
-            gameBox.SetData(new[] { Color.Red });
+            gameBox.SetData(new[] { Color.CadetBlue });
 
         }
 

@@ -97,8 +97,9 @@ namespace Game1
             thisMouse = Mouse.GetState();
             if (mouseClick.LeftButton == ButtonState.Released && thisMouse.LeftButton == ButtonState.Pressed)
             {
+                Vector2 position = gameController.getLogicalCord(thisMouse.X, thisMouse.Y);
                 gameController.CreateExplosion(thisMouse.X, thisMouse.Y, spriteBatch, (float)gameTime.ElapsedGameTime.TotalSeconds);
-               
+                ballSim.hitBall(position);
             }
             mouseClick = thisMouse;
 

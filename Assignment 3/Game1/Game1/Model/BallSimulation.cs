@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Game1.Model;
+
 
 namespace Ball.Model
 {
@@ -16,7 +16,7 @@ namespace Ball.Model
 
         private const int numberOfBalls = 1;
         private Ball[] balls = new Ball[numberOfBalls];
-        AimScope aim = new AimScope();
+        
 
         public BallSimulation()
         {
@@ -41,40 +41,43 @@ namespace Ball.Model
         // set collision in wall, ball colloide in postion 1 & 0, between its free example: 0,5 the ball not collide
         public void simUpdate(float gameTime)
         {
-            ball.updateBallPosition(gameTime);
-
-            if(ball.getBallPosition().X + ball.getBallRadius() > 1 || ball.getBallPosition().X - ball.getBallRadius() < 0)
+            if (ball.ballAlive)
             {
-                ball.setBallSpeedX();
-            }
-            
 
-            if (ball.getBallPosition().Y + ball.getBallRadius() > 1 || ball.getBallPosition().Y - ball.getBallRadius() < 0)
-            {
-                ball.setBallSpeedY();
-            }
+                ball.updateBallPosition(gameTime);
 
-        }
-
-
-        internal void HitBall(Vector2 mousePosition, IModelListener1 view)
-        {
-            foreach (Ball ball in balls)
-            {
-                if (ball.ballAlive)
+                if (ball.getBallPosition().X + ball.getBallRadius() > 1 || ball.getBallPosition().X - ball.getBallRadius() < 0)
                 {
-                    Vector2 ballPosition = ball.getBallPosition();
-                    if (ballPosition.Y >= (mousePosition.Y - aim.Radius) &&
-                        ballPosition.Y <= (mousePosition.Y + aim.Radius) &&
-                        ballPosition.X >= (mousePosition.X - aim.Radius) &&
-                        ballPosition.X <= (mousePosition.X + aim.Radius))
-                    {
-                        ball.ballAlive = false;
-                        view.CreateExplosion(ballPosition.X, ballPosition.Y);
-                    }
+                    ball.setBallSpeedX();
                 }
+
+
+                if (ball.getBallPosition().Y + ball.getBallRadius() > 1 || ball.getBallPosition().Y - ball.getBallRadius() < 0)
+                {
+                    ball.setBallSpeedY();
+                }
+
             }
         }
+
+
+        public void hitBall(Vector2 mousePosition)
+        {
+            if (ball.ballAlive)
+            {
+                Vector2 ballPosition = ball.getBallPosition();
+                if(ballPosition.Y >= (mousePosition.Y - ball.getBallRadius()) &&
+                   ballPosition.Y <= (mousePosition.Y + ball.getBallRadius()) &&
+                   ballPosition.X >= (mousePosition.X - ball.getBallRadius()) &&
+                   ballPosition.X <= (mousePosition.X + ball.getBallRadius()))
+                {
+                    ball.ballAlive = false;
+                }
+
+
+            }
+        }
+
 
     }
 }
