@@ -36,7 +36,7 @@ namespace Game1.View
 
         public void Draw(SpriteBatch spriteBatch, Camera cam, float elapsedTime)
         {
-            scale = cam.getScale(1.0f, explosionTexture.Bounds.Width);
+            scale = cam.getScale(0.7f, explosionTexture.Bounds.Width);
             goneTime += elapsedTime;
             if (goneTime >= explosionTime)
             {
